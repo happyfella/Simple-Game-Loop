@@ -7,13 +7,7 @@ namespace SimpleGameLoop.Utils
 {
     public class GameTime
     {
-        public GameTime()
-        {
-            Clock = new Stopwatch();
-            Clock.Start();
-        }
-
-        public Stopwatch Clock { get; set; } // Use Clock from SFML.System if using SFML
+        public GameTime() { }
 
         public float DeltaTime { get; set; }
 

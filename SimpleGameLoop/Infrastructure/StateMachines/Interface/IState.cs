@@ -7,7 +7,9 @@ namespace SimpleGameLoop.Infrastructure.StateMachines.Interface
     public interface IState
     {
         void OnEnter();
-        void Tick();
+        void Process();
+        void Update();
+        void Render();
         void OnExit();
     }
 }

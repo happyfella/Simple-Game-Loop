@@ -28,8 +28,21 @@ namespace SimpleGameLoop.Infrastructure.StateMachines
             {
                 SetState(transition.To);
             }
+        }
 
-            CurrentState.Tick();
+        public void Process()
+        {
+            CurrentState.Process();
+        }
+
+        public void Update()
+        {
+            CurrentState.Update();
+        }
+
+        public void Render()
+        {
+            CurrentState.Render();
         }
 
         public void SetState(IState state)

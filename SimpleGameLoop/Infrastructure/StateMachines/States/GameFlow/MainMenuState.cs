@@ -18,17 +18,28 @@ namespace SimpleGameLoop.Infrastructure.StateMachines.States.GameFlow
 
         public void OnEnter()
         {
+            Console.WriteLine($"{this.GetType().ToString()} OnEnter");
             NewGameSelected = false;
         }
 
-        public void Tick()
+        public void Process()
         {
-            // TODO: Call menu entities Update and Render methods
+            Console.WriteLine($"{this.GetType().ToString()} Process");
+        }
+
+        public void Update()
+        {
+            Console.WriteLine($"{this.GetType().ToString()} Update");
+        }
+
+        public void Render()
+        {
+            Console.WriteLine($"{this.GetType().ToString()} Render");
         }
 
         public void OnExit()
         {
-
+            Console.WriteLine($"{this.GetType().ToString()} OnExit");
         }
     }
 }

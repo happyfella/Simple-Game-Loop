@@ -18,17 +18,29 @@ namespace SimpleGameLoop.Infrastructure.StateMachines.States.GameFlow
 
         public void OnEnter()
         {
+            Console.WriteLine($"{this.GetType().ToString()} OnEnter");
 
+            ExitState = false;
+        }        
+
+        public void Process()
+        {
+            Console.WriteLine($"{this.GetType().ToString()} Process");
         }
 
-        public void Tick()
+        public void Update()
         {
-            // TODO: Call splash entities Update and Render methods
+            Console.WriteLine($"{this.GetType().ToString()} Update");
+        }
+
+        public void Render()
+        {
+            Console.WriteLine($"{this.GetType().ToString()} Render");
         }
 
         public void OnExit()
         {
-
+            Console.WriteLine($"{this.GetType().ToString()} OnExit");
         }
     }
 }

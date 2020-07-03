@@ -3,6 +3,7 @@ using SimpleGameLoop.Infrastructure.StateMachines.States.GameFlow;
 using SimpleGameLoop.Utils;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading;
 
@@ -10,7 +11,7 @@ namespace SimpleGameLoop
 {
     public class Game
     {
-        private const float MS_PER_UPDATE = 16f;
+        private const float MS_PER_UPDATE = 16.6666f;
         private bool isRunning = true;
         private GeneralStateMachine gameFlowMachine;
         private GameTime gameTime;
@@ -47,26 +48,30 @@ namespace SimpleGameLoop
             var deltaTime = 0f;
             var lag = 0f;
 
+            var watch = new Stopwatch();
+            watch.Start();
+
             while (isRunning)
             {
                 // Game time calculations
-                totalTimeElapsed = gameTime.Clock.ElapsedMilliseconds;
+                totalTimeElapsed = watch.ElapsedMilliseconds;
                 deltaTime = totalTimeElapsed - previousTimeElapsed;
                 previousTimeElapsed = totalTimeElapsed;
                 lag += deltaTime;
 
-                // Process gameFlowMachine Process method to handle user input
+                // Tells the state machine a tick has begun, makes sure the state is correct
+                gameFlowMachine.Tick();
+                gameFlowMachine.Process();
 
-                while(lag >= MS_PER_UPDATE)
+
+                while (lag >= MS_PER_UPDATE)
                 {
-                    // Process gameFlowMachine Update method to perform game calculations and object updates
+                    gameFlowMachine.Update();
                     gameTime.Update(lag, totalTimeElapsed);
-
                     lag -= MS_PER_UPDATE;
                 }
 
-                // Process gameFlowMachine Render method to draw to the screen... Render(lag / MS_PER_UPDATE)
-                gameFlowMachine.Tick();
+                gameFlowMachine.Render();
             }
         }
     }
