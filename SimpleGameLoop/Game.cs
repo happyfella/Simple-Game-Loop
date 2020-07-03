@@ -63,7 +63,6 @@ namespace SimpleGameLoop
                 gameFlowMachine.Tick();
                 gameFlowMachine.Process();
 
-
                 while (lag >= MS_PER_UPDATE)
                 {
                     gameFlowMachine.Update();
